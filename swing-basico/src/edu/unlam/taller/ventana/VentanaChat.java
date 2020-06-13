@@ -23,6 +23,10 @@ import java.awt.event.WindowEvent;
 
 public class VentanaChat extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6422904877311999241L;
 	private JPanel contentPane;
 	private JPanel panelMensajeAEnviar;
 	private JTextField textField;

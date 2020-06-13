@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 
 public class MiPrimerVentana extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1779064557725749287L;
 	private JPanel panel;
 	private JLabel etiqueta;
 	private JButton boton;
