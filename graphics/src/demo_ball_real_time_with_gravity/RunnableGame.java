@@ -88,10 +88,14 @@ public class RunnableGame extends JFrame implements Runnable {
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e) { }
+			public void keyReleased(KeyEvent e) {
+				// no hacer nada
+			}
 
 			@Override
-			public void keyTyped(KeyEvent e) { }
+			public void keyTyped(KeyEvent e) {
+				// no hacer nada
+			}
 		});
 
 		pack();
