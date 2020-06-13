@@ -1,7 +1,8 @@
 package edu.unlam.taller.pruebas;
 
 public class Punto {
-	double x, y;
+	private double x;
+	private double y;
 
 	public Punto(double x, double y) {
 		this.x = x;

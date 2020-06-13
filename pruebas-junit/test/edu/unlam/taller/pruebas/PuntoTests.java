@@ -17,7 +17,7 @@ public class PuntoTests {
 	 * ejecución de cada prueba
 	 */
 	@Before
-	public void setup() {
+	public void setUp() {
 		punto = new Punto(0, 0);
 	}
 

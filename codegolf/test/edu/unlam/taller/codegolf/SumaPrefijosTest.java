@@ -9,7 +9,7 @@ public class SumaPrefijosTest {
 	SumaPrefijos sumaPrefijos;
 
 	@Before
-	public void Before() {
+	public void before() {
 		sumaPrefijos = new SumaPrefijos();
 	}
 	

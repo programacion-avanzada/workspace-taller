@@ -7,13 +7,8 @@ import java.net.Socket;
 
 public class Servidor {
 
-	private ServerSocket servidor;
-	private int puerto;
-	
 	public Servidor(int puerto) throws IOException {
-		
-		this.puerto = puerto;
-		servidor = new ServerSocket(this.puerto);
+		ServerSocket servidor = new ServerSocket(puerto);
 		
 		System.out.println("Server inicializando...");
 		
@@ -27,6 +22,7 @@ public class Servidor {
 		}
 		
 		System.out.println("Server Finalizado");
+		servidor.close();
 	}
 	
 	public static void main(String[] args) {

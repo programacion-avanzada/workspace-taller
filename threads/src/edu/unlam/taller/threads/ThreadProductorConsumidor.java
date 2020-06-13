@@ -45,7 +45,7 @@ public class ThreadProductorConsumidor {
 
 	public static class ProductorConsumidor {
 		LinkedList<Integer> almacen = new LinkedList<>();
-		int capacidad = 5;
+		private int capacidad = 5;
 
 		// Metodo invocado por el productor
 		public synchronized void producir() throws InterruptedException {

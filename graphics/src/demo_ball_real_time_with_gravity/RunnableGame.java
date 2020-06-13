@@ -35,9 +35,6 @@ public class RunnableGame extends JFrame implements Runnable {
 	private int loops = 0;
 	private int fps = 0;
 
-	public RunnableGame() {
-	}
-
 	public void init() {
 		try {
 			background = ImageIO.read(new File("background.jpg"));
@@ -85,16 +82,16 @@ public class RunnableGame extends JFrame implements Runnable {
 				case KeyEvent.VK_ESCAPE:
 					is_running = false;
 					break;
+				default:
+					break;
 				}
 			}
 
 			@Override
-			public void keyReleased(KeyEvent e) {
-			}
+			public void keyReleased(KeyEvent e) { }
 
 			@Override
-			public void keyTyped(KeyEvent arg0) {
-			}
+			public void keyTyped(KeyEvent e) { }
 		});
 
 		pack();
