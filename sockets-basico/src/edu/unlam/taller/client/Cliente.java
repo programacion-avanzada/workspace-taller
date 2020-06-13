@@ -7,14 +7,8 @@ import java.net.UnknownHostException;
 
 public class Cliente {
 	
-	private Socket socket;
-	private String ip;
-	private int puerto;
-	
 	public Cliente(String ip, int puerto) throws UnknownHostException, IOException {
-		this.ip = ip;
-		this.puerto = puerto;
-		socket = new Socket(this.ip, this.puerto);
+		Socket socket = new Socket(ip, puerto);
 		
 		DataInputStream entrada = new DataInputStream(socket.getInputStream());
 		System.out.println(entrada.readUTF()); 

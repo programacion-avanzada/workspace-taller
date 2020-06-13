@@ -2,9 +2,9 @@ package demo_ball_real_time_with_gravity;
 
 // If multiple balls are created, physics methods must run with 'synchronized'
 public class Ball {
-	final double GRAVITY = 9.8;
-	final double GROUNDED_ERROR_POS = .02;
-	final double GROUNDED_ERROR_VEL = .1;
+	private final double GRAVITY = 9.8;
+	private final double GROUNDED_ERROR_POS = .02;
+	private final double GROUNDED_ERROR_VEL = .1;
 
 	private double x;
 	private double y;

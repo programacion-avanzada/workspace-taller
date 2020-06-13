@@ -1,22 +1,16 @@
 package edu.unlam.taller.state.estados;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.unlam.taller.state.estados.Chiquito;
-import edu.unlam.taller.state.estados.Estado;
-import edu.unlam.taller.state.estados.Grande;
-import edu.unlam.taller.state.estados.Muerto;
-import edu.unlam.taller.state.estados.Piromaniaco;
-
 public class ChiquitoTests {
 
-	Estado estado;
+	private Estado estado;
 	
 	@Before
-	public void setup() {
+	public void setUp() {
 		estado = new Chiquito();
 	}
 	

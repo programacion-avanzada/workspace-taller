@@ -1,6 +1,6 @@
 package edu.unlam.taller.state;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,10 +9,10 @@ import edu.unlam.taller.state.estados.Chiquito;
 
 public class MarioTests {
 
-	Mario mario;
+	private Mario mario;
 	
 	@Before
-	public void setup() {
+	public void setUp() {
 		mario = new Mario();
 	}
 	
