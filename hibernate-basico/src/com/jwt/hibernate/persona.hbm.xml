@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.jwt.hibernate.Persona" table="PERSONA">
+		<id column="Dni" name="dni" type="int" />
+		<property column="Apellido" name="apellido" type="string" />
+		<property column="Nombre" name="nombre" type="string" />
+		<property column="Sexo" name="sexo" type="char" />
+		<property column="Codigo_Depto" name="codigo_depto" type="int"></property>
+	</class>
+	
+	<query name="DniPersonas"><![CDATA[SELECT p.dni FROM Persona p]]></query>
+</hibernate-mapping>
