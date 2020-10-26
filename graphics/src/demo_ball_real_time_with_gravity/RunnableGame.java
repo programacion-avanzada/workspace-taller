@@ -5,8 +5,11 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -35,6 +38,9 @@ public class RunnableGame extends JFrame implements Runnable {
 	private int loops = 0;
 	private int fps = 0;
 
+	public RunnableGame() {
+	}
+
 	public void init() {
 		try {
 			background = ImageIO.read(new File("background.jpg"));
@@ -44,7 +50,7 @@ public class RunnableGame extends JFrame implements Runnable {
 
 		player = new Player(1, 3);
 
-		ball = new Ball(8, 0, 8, 0, 15, 0, 0.8);
+		ball = new Ball(2, 8, 2, 9, 0, 16, 0, 0.8);
 
 		drawPanel = new DrawPanel();
 		add(drawPanel);
@@ -82,19 +88,15 @@ public class RunnableGame extends JFrame implements Runnable {
 				case KeyEvent.VK_ESCAPE:
 					is_running = false;
 					break;
-				default:
-					break;
 				}
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
-				// no hacer nada
 			}
 
 			@Override
-			public void keyTyped(KeyEvent e) {
-				// no hacer nada
+			public void keyTyped(KeyEvent arg0) {
 			}
 		});
 
@@ -149,13 +151,34 @@ public class RunnableGame extends JFrame implements Runnable {
 	private class DrawPanel extends JPanel {
 		private static final long serialVersionUID = 91574813372177663L;
 
+		private final int SQUARE = 50;
+		private final int WIDTH = SQUARE * 16;
+		private final int HEIGHT = SQUARE * 9;
+
+		public DrawPanel() {
+			addMouseListener(new MouseAdapter() {
+				@Override
+				public void mousePressed(MouseEvent me) {
+					super.mouseClicked(me);
+					Point point = me.getPoint();
+					Dimension currentDimension = getContentPane().getSize();
+					System.out.print("Click en: [" + (point.x * WIDTH / currentDimension.getWidth()) + ", ");
+					System.out.println(point.y * HEIGHT / currentDimension.getHeight() + "]");
+					if (ball.isInside((point.x * WIDTH / currentDimension.getWidth()) / SQUARE,
+							(point.y * HEIGHT / currentDimension.getHeight()) / SQUARE)) {
+						ball.setColor(new Color((int) (Math.random() * Math.pow(2, 24))));
+					}
+				}
+			});
+		}
+
 		@Override
 		protected void paintComponent(Graphics g) {
 			super.paintComponent(g);
 			Graphics2D g2 = (Graphics2D) g;
 
 			Dimension currentDimension = getContentPane().getSize();
-			g2.scale(currentDimension.getWidth() / 800, currentDimension.getHeight() / 450);
+			g2.scale(currentDimension.getWidth() / WIDTH, currentDimension.getHeight() / HEIGHT);
 
 			g2.drawImage(background, null, 0, 0);
 
@@ -168,17 +191,19 @@ public class RunnableGame extends JFrame implements Runnable {
 			g2.drawString("Ball Y: " + String.format("%8.6s", ball.getY()), 240, 60);
 
 			g2.setColor(Color.BLUE);
-			g2.fillRect((int) (player.getDeltaX() * 50), (int) (player.getDeltaY() * 50), 50, 50);
+			g2.fillRect((int) (player.getDeltaX() * SQUARE), (int) (player.getDeltaY() * SQUARE), SQUARE, SQUARE);
 			g2.setColor(Color.RED);
-			g2.drawRect((int) (player.getX() * 50), (int) (player.getY() * 50), 49, 49);
+			g2.drawRect((int) (player.getX() * SQUARE), (int) (player.getY() * SQUARE), SQUARE - 1, SQUARE - 1);
 
-			g2.setColor(Color.YELLOW);
-			g2.fillOval((int) (ball.getX() * 50), (int) (ball.getY() * 50), 50, 50);
+			g2.setColor(ball.getColor());
+			g2.fillOval((int) (ball.getX() * SQUARE - SQUARE * ball.getSize() / 2),
+					(int) (ball.getY() * SQUARE - SQUARE * ball.getSize() / 2), (int) (SQUARE * ball.getSize()),
+					(int) (SQUARE * ball.getSize()));
 		}
 
 		@Override
 		public Dimension getPreferredSize() {
-			return new Dimension(800, 450);
+			return new Dimension(WIDTH, HEIGHT);
 		}
 	}
 
