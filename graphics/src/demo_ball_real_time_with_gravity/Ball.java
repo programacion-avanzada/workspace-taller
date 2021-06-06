@@ -19,10 +19,12 @@ public class Ball {
 	private double vx = 0;
 	private double elasticity; // [0, 1]
 	private boolean grounded;
-	private Sound2Channels sound;
+	//private Sound2Channels sound;
+	private Sound2ChannelsFX sound;
 	private Color color = Color.YELLOW;
 
-	public Ball(double size, double x, double y, double floor, double ceil, double right, double left, double elasticity) {
+	public Ball(double size, double x, double y, double floor, double ceil, double right, double left,
+			double elasticity) {
 		this.size = size;
 		this.x = x;
 		this.y = y;
@@ -31,11 +33,14 @@ public class Ball {
 		this.right = right - size / 2;
 		this.left = left + size / 2;
 		this.elasticity = elasticity;
-		try {
-			this.sound = new Sound2Channels("./left.wav", "./right.wav");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		this.sound = new Sound2ChannelsFX("hit.wav");
+		
+		//try {
+		//	this.sound = new Sound2Channels("./left.wav", "./right.wav");
+		//} catch (Exception e) {
+		//	e.printStackTrace();
+		//}
+		
 	}
 
 	public void move(double deltaTime) {
@@ -105,12 +110,13 @@ public class Ball {
 
 	private void onCrash(double v) {
 		float volumeStrength = (float) Math.min(Math.abs(v) / 20, 1f);
-		double max = this.right - this.left;
-		double actual = this.x - this.left;
-		sound.setVolume(volumeStrength * (float) (1 - actual / max), volumeStrength * (float) (actual / max));
+		double halfRange = (this.right - this.left) / 2;
+		double position = this.right - this.x;
+		sound.setBalance((halfRange - position) / halfRange);
+		sound.setVolume(volumeStrength);
 		sound.play();
 	}
-	
+
 	public boolean isInside(double x, double y) {
 		return Math.pow(this.x - x, 2) + Math.pow(this.y - y, 2) < Math.pow(size / 2, 2);
 	}
@@ -140,7 +146,7 @@ public class Ball {
 	public void pushRight(double force) {
 		vx += force;
 	}
-	
+
 	public double getSize() {
 		return size;
 	}
