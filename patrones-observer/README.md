@@ -47,8 +47,6 @@ El patrón Observer sugiere que se añada un mecanismo de suscripción a la clas
 El notificadorMensaje va a ser el encargado de enviarle a los suscriptores un mail con un mensaje. Dicho notifacador lo va a hacer a partir de la clase abstracta Observado. Este diagrama nos permite visualizar la explicacion:
 ![](diagramas/MensajeUML.png)
 
-3. 
-
 ## Referencias
 - [Explicacion mas detallada](https://refactoring.guru/es/design-patterns/observer)
 - [Video con implementacion en codigo](https://www.youtube.com/watch?v=HFkZb1g8faA)
