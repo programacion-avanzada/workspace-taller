@@ -41,11 +41,24 @@ El patrón Observer sugiere que se añada un mecanismo de suscripción a la clas
 ## Ejemplos:
 
 1. Se puede utilizar observer pensando en el comportamiento de la notificación para asistir a la asamblea cuando se presiona el botón rojo, mecánica que se encuentra en el juego Among Us. Este diagrama nos permite visualizar la implementacion del patron:
+
 ![](diagramas/amongUsUML.png)
 
 2. Cuando nos registramos en alguna aplicacion del celular (como uala, steam, etc) siempre existe la opcion de recibir notificaciones al mail por algun evento/anuncio de algo nuevo. Es posible implementarlo con el patron observer, teniendo como clases concretas al suscriptor (el observador) y el notificadorMensaje (el observado). 
 El notificadorMensaje va a ser el encargado de enviarle a los suscriptores un mail con un mensaje. Dicho notifacador lo va a hacer a partir de la clase abstracta Observado. Este diagrama nos permite visualizar la explicacion:
+
 ![](diagramas/MensajeUML.png)
+
+3. Un ejemplo en el cual se podría aplicar el patrón observer es en la aplicación Disney+. Imaginemos que empezamos a ver una serie, y los capítulos se estrenan semana a semana. Entonces, por mas que nosotros refresquemos la página constantemente no vamos a ver capítulos nuevos, por lo cual, nos gustaría recibir una notificación el día del estreno.
+Ante este tipo de situaciones, el sistema podría utilizar el patrón observer en el que el cliente se suscribe a las notificaciones de la serie de Disney. Conviene el uso de este patrón ya que hay varias personas que están interesadas en esta serie, pero no en otras, por lo que no quieren que les llega una notificación por cada estreno de una serie en la plataforma.
+Con este patrón podremos notificar a todos los suscriptores interesados los cambios de estado. Entonces, cuando sucede un evento, el notificador recorrer a sus suscriptores y llama al método de notificación específico de sus objetos.
+
+![](diagramas/disney+.png)
+
+Como podemos ver, en este diagrama tenemos:
+- El Notificador proporciona una interfaz para agregar y eliminar) observadores. El Sujeto conoce a todos sus observadores.
+- La interfaz suscriptora declara la interfaz de notificación
+- El suscriptor concreto realiza algunas acciones en respuesta a las notificaciones emitidas por el notificador.
 
 ## Referencias
 - [Explicacion mas detallada](https://refactoring.guru/es/design-patterns/observer)
