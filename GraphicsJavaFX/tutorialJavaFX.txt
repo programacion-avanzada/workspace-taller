@@ -1,0 +1,13 @@
+Creacion nuevo proyecto con javaFX
+Descargar JavaFX desde la siguiente pagina: https://gluonhq.com/products/javafx/
+descomprimir el archivo descargado en una carpeta a eleccion
+Crear proyecto nuevo o usar proyecto existente
+Click derecho sobre el proyecto, ir a properties, luego en la ventana de la izquierda ir a Java Build Path, click en la pestaña Libraries, luego seleccionar la opcion ClassPath, y presionar el boton Add Library.
+Seleccionar la opcion User Library, presionar next, click en el boton User Libraries, apretamos New y nombramos la nueva libreria como queramos, seleccionamos la libreria y presionamos Add External JARs. Nos movemos hasta la carpeta donde descomprimimos el contenido del .zip descargado con anterioridad, entramos a lib y seleccionamos todos los archivos con extension .jar. Presionamos aceptar, luego Apply and Close, seleccionamos la libreria y damos click en Finish. Veremos que en ClassPath se agrego la libreria que acabamos de seleccionar.
+Presionamos Apply, y luego Apply and Close.
+
+Una vez importada la libreria, vamos a dar click derecho sobre el proyecto nuevamente y vamos a ir a la seccion Run As y luego Run Configurations. Presionamos y nos abrira una nueva pestaña donde tendremos que clickear la pestaña Arguments y en VM Arguments agregamos la siguiente linea (sin las ""):
+"--module-path (ruta absoluta del .jar javafx.controls) --add-modules=javafx.controls"
+Y listo! Ya esta listo para andar!
+
+Notas: la ruta del archivo javafx.controls suele estar en donde se descomprimio la libreria javafx
