@@ -1,0 +1,28 @@
+@startuml disney+
+
+skinparam dpi 300
+
+interface Notificador {
+    + void agregar()
+    + void eliminar()
+    + void notificar()
+}
+
+interface Suscriptor {
+    + void actualizarEstado()
+}
+
+class NotificadorConcreto {
+    - suscriptores : Suscriptor[]   
+}
+
+class SuscriptorConcreto {
+    - capSem
+}
+
+Notificador <|.. NotificadorConcreto
+Suscriptor <|.. SuscriptorConcreto
+Notificador --> Suscriptor
+SuscriptorConcreto --> NotificadorConcreto
+
+@enduml
