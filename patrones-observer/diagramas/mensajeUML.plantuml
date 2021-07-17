@@ -1,0 +1,38 @@
+@startuml observer
+
+skinparam dpi 300
+
+abstract class Observado {
+    - observadores : Observador[]
+    # void notificar()
+    + void registrar(Observador)
+}
+
+abstract class Observador {
+    + {abstract} void notificarse(Mensaje)
+}
+
+class NotificadorMensaje {
+    - mensaje : Mensaje
+    
+    + void setMensaje(Mensaje)
+    # void enviarMensaje()
+}
+
+class Mensaje{
+    - id : int
+    - texto : String
+}
+
+class Suscriptor {
+    - id : int
+    - apellido : String
+    - mail : String
+}
+
+Observado <|-- NotificadorMensaje
+Observado *-- Observador
+NotificadorMensaje *-- Mensaje
+Observador <|-- Suscriptor
+
+@enduml

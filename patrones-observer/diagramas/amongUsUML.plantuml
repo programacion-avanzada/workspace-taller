@@ -1,0 +1,31 @@
+@startuml observer
+
+skinparam dpi 300
+
+abstract class Observable {
+    - Observador[] observadores
+    # void notificar()
+    + void registrar(Observador o)
+}
+
+abstract class Observador {
+    + {abstract} void notificarse()
+}
+
+class Personaje {
+    - String nombre
+
+    + Personaje(String nombre)
+
+    + void notificarse()
+}
+
+class BotonRojo {
+    + void presionar() 
+}
+
+Observable *-- Observador
+Observador <|-- Personaje
+Observable <|-- BotonRojo
+
+@enduml
