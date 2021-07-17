@@ -1,0 +1,40 @@
+@startuml
+
+Estado o-- MarioBross
+Estado <|-- Piromaniaco
+Estado <|-- Chiquito
+Estado <|-- Grande
+Estado <|-- Muerto
+
+class MarioBross {
+	-estado: Estado
+	+esAtacado(): void
+	+comerHongo(): void
+    +tocarFlor(): void
+}
+abstract class Estado {
+	+esAtacado(): void
+	+comerHongo(): void
+    +tocarFlor(): void
+}
+
+class Piromaniaco {
+	+esAtacado(): void
+	+comerHongo(): void
+    +tocarFlor(): void
+}
+
+class Chiquito{
+    +esAtacado(): void
+	+comerHongo(): void
+}
+
+class Grande {
+    +esAtacado(): void
+	+tocarFlor(): void
+}
+
+class Muerto {
+
+}
+@enduml
