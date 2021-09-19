@@ -1,40 +1,53 @@
 @startuml
 
-Estado o-- MarioBross
-Estado <|-- Piromaniaco
-Estado <|-- Chiquito
-Estado <|-- Grande
-Estado <|-- Muerto
+Mario o-- EstadoMario
+EstadoMario <|-- MarioFuego
+EstadoMario <|-- MarioChiquito
+EstadoMario <|-- SuperMario
+EstadoMario <|-- MarioMuerto
 
-class MarioBross {
-	-estado: Estado
-	+esAtacado(): void
+class Bloque {
+	-sano: boolean
+	+golpear(): void
+	+estaSano(): boolean
+}
+
+class Mario {
+	-estado: EstadoMario
+	+hit(): void
+	+comerHongo(): void
+    +tocarFlor(): void
+    +golpearBloque(Bloque): void
+    +recogerMoneda(): void
+}
+abstract class EstadoMario {
+	+hit(): void
+	+comerHongo(): void
+    +tocarFlor(): void
+    +golpearBloque(Bloque): void
+    +recogerMoneda(Mario): void
+}
+
+class MarioFuego {
+	+hit(): void
 	+comerHongo(): void
     +tocarFlor(): void
 }
-abstract class Estado {
-	+esAtacado(): void
+
+class MarioChiquito{
+    +hit(): void
 	+comerHongo(): void
-    +tocarFlor(): void
+	+golpearBloque(Bloque): void
+    +recogerMoneda(Mario): void
 }
 
-class Piromaniaco {
-	+esAtacado(): void
-	+comerHongo(): void
-    +tocarFlor(): void
-}
-
-class Chiquito{
-    +esAtacado(): void
-	+comerHongo(): void
-}
-
-class Grande {
-    +esAtacado(): void
+class SuperMario {
+    +hit(): void
 	+tocarFlor(): void
 }
 
-class Muerto {
-
+class MarioMuerto {
+	+golpearBloque(Bloque): void
+    +recogerMoneda(Mario): void
 }
 @enduml

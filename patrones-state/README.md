@@ -1,10 +1,10 @@
-## Patrón State 
+# Patrón State 
 
-### Explicación
+## Explicación
 
 El patrón de diseño State resulta muy útil cuando necesitamos que un objeto actúe de diferente forma según el estado interno del mismo.
 
-### Ventajas y Desventajas
+## Ventajas y Desventajas
 
 Algunas de las ventajas que presenta este patrón de diseño son:
 
@@ -17,18 +17,18 @@ No obstante, State tiene la siguiente desventaja:
 
 - Se incrementa el número de subclases.
 
-### Ejemplo
+## Ejemplo
 
-Por ejemplo, tenemos el objeto MarioBros que actuará diferente ante el ataque de un enemigo; si MarioBros está en estado “Piromaniaco” o “Grande” este pasará a ir a un estado “Chiquito”, pero en cambio si MarioBros está en estado “Chiquito”, esté pasará a estar a un estado “Muerto”.<br>
+Por ejemplo, tenemos el objeto Mario que actuará diferente ante el ataque de un enemigo; si Mario está en estado `MarioFuego` o `SuperMario` este pasará a ir a un estado `MarioChiquito`, pero en cambio si Mario está en estado `MarioChiquito`, esté pasará a estar a un estado `MarioMuerto`.  
 Siguiendo este mismo ejemplo, se mostrará como sería el diagrama de UML de un patrón State:
 
-![diagrama-uml](https://user-images.githubusercontent.com/63320772/125171950-581f0b80-e18d-11eb-8faa-db3fd11e7fa5.png)
+![diagrama-uml](diagrama.png)
 
 En este diagrama podemos ver que todos los estados que extienden de la clase “Estado” tienen el método implementado esAtacado() el cual devolverá, dependiendo su estado actual, otra instancia de otro estado diferente.<br><br>
-Con el siguiente diagrama de estado también se podrá como el objeto MarioBross pasa por los diferentes diagramas de Estados.
+Con el siguiente diagrama de estado también se podrá como el objeto Mario pasa por los diferentes diagramas de Estados.
 
-![image](https://user-images.githubusercontent.com/63320772/124196554-0dbdd080-daa3-11eb-8d2e-3ab4dd7982fa.png)
+![image](estados1.png)
 
 <br>
 
-![image](https://user-images.githubusercontent.com/63320772/124196600-2201cd80-daa3-11eb-9350-d9d4a8f58ff3.png)
+![image](estados2.png)

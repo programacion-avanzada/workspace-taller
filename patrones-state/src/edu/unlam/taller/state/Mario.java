@@ -1,46 +1,39 @@
 package edu.unlam.taller.state;
 
-import edu.unlam.taller.state.estados.Chiquito;
-import edu.unlam.taller.state.estados.Estado;
+import edu.unlam.taller.elementos.Bloque;
 
 public class Mario {
 
-	private Estado estado = new Chiquito();
-	
-	public Estado getEstado() {
-		return estado;
-	}
+	private int monedas = 0;
+	private EstadoMario estado = new MarioChiquito();
 
+	public void golpearBloque(Bloque bloque) {
+		estado.golpearBloque(bloque);
+	}
+	
+	public void recogerMoneda() {
+		estado.recogerMoneda(this);
+	}
+	
 	public void comerHongo() {
 		estado = estado.comerHongo();
 	}
-	
-	public void recibirDaño() {
-		estado = estado.recibirDaño();
+
+	public void hit() {
+		estado = estado.hit();
 	}
-	
+
 	public void tocarFlor() {
 		estado = estado.tocarFlor();
 	}
-	
-	public static void main(String[] args) {
-		Mario mario = new Mario();
-		System.out.println(mario.estado); // chiquito
-		mario.comerHongo();
-		System.out.println(mario.estado); // grande
-		mario.comerHongo();
-		System.out.println(mario.estado); // grande
-		mario.recibirDaño();
-		System.out.println(mario.estado); // chiquito
-		mario.tocarFlor();
-		System.out.println(mario.estado); // piromaniaco
-		mario.recibirDaño();
-		System.out.println(mario.estado); // grande
-		mario.recibirDaño();
-		System.out.println(mario.estado); // chiquito
-		mario.recibirDaño();
-		System.out.println(mario.estado); // muerto
-		
+
+	void addMoneda() {
+		this.monedas++;
 	}
 	
+	@Override
+	public String toString() {
+		return estado.getClass().getSimpleName();
+	}
+
 }

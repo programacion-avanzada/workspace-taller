@@ -5,20 +5,45 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.unlam.taller.state.estados.Chiquito;
 
 public class MarioTests {
 
-	private Mario mario;
+	private edu.unlam.taller.noState.Mario mario;
 	
 	@Before
 	public void setUp() {
-		mario = new Mario();
+		mario = new edu.unlam.taller.noState.Mario();
 	}
 	
 	@Test
 	public void queComienzaChiquito() {
-		assertEquals(new Chiquito(), mario.getEstado());
+		assertEquals("MarioChiquito", mario.toString());
+	}
+	
+	@Test
+	public void comerHongo() {
+		mario.comerHongo();
+		assertEquals("SuperMario", mario.toString());
+	}
+	
+	@Test
+	public void tocarFlor() {
+		mario.tocarFlor();
+		assertEquals("MarioFuego", mario.toString());
+	}
+	
+	@Test
+	public void hit() {
+		mario.hit();
+		assertEquals("Muerto", mario.toString());
+	}
+	
+	@Test
+	public void queMarioGrandeNoMuereAlSerGolpeado() {
+		mario.comerHongo();
+		
+		mario.hit();
+		assertEquals("MarioChiquito", mario.toString());
 	}
 
 }
