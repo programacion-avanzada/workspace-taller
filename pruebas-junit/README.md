@@ -68,52 +68,52 @@ A continuación se dejarán ejemplos de tipos de Asserts para utilizar en JUnit,
 - assertTrue() y assertFalse() validan si un resultado es verdadero o falso.
 - assertNotEquals() validan que 2 objetos sean distintos
 	
-	```java
-	@Test
-	public void comparar() {
-		Punto punto = new Punto(0, 0);
-		Punto punto2 = new Punto(0, 0);
-		Punto punto3 = new Punto(1, 0);
-		Assert.assertTrue(punto.equals(punto2));
-		Assert.assertFalse(punto.equals(punto3));
-		Assert.assertNotEquals(punto3, punto);
-	}
-	```
+```java
+@Test
+public void comparar() {
+	Punto punto = new Punto(0, 0);
+	Punto punto2 = new Punto(0, 0);
+	Punto punto3 = new Punto(1, 0);
+	Assert.assertTrue(punto.equals(punto2));
+	Assert.assertFalse(punto.equals(punto3));
+	Assert.assertNotEquals(punto3, punto);
+}
+```
 	
 - assertSame() y assertNotSame() prueban si dos objetos apuntan al mismo objeto
 
-	```java
-	@Test
-	public void compararClase() {
-		Punto punto = new Punto(0, 0);
-		Punto punto2 = new Punto(0, 0);
-		Punto punto3 = punto;
-		Assert.assertSame(punto, punto3);
-		Assert.assertNotSame(punto, punto2);
-	}
-	```
+```java
+@Test
+public void compararClase() {
+	Punto punto = new Punto(0, 0);
+	Punto punto2 = new Punto(0, 0);
+	Punto punto3 = punto;
+	Assert.assertSame(punto, punto3);
+	Assert.assertNotSame(punto, punto2);
+}
+```
 	
 - assertNull() valida si un resultado es nulo.
 
-	```java
-	@Test
-	public void nulo() {
-		Punto punto4 = null;
-		Assert.assertNull(punto4);
-	}
-	```
+```java
+@Test
+public void nulo() {
+	Punto punto4 = null;
+	Assert.assertNull(punto4);
+}
+```
 	
 - assertArrayEquals() valida que 2 arrays sean iguales
 
-	```java
-	@Test
-	public void compararArray() {
-		Punto[] arrayEsperado = {new Punto(1, 0),new Punto(2, 0),new Punto(3, 0)};
-		Punto[] arrayResult = {new Punto(1, 0),new Punto(2, 0),new Punto(3, 0)};
-		
-		Assert.assertArrayEquals(arrayEsperado, arrayResult);
-	}
-	```
+```java
+@Test
+public void compararArray() {
+	Punto[] arrayEsperado = {new Punto(1, 0),new Punto(2, 0),new Punto(3, 0)};
+	Punto[] arrayResult = {new Punto(1, 0),new Punto(2, 0),new Punto(3, 0)};
+	
+	Assert.assertArrayEquals(arrayEsperado, arrayResult);
+}
+```
 
 
 ### Patrón 4A
