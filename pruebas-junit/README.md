@@ -115,7 +115,6 @@ public void compararArray() {
 }
 ```
 
-
 ### Patrón 4A
 El patrón sugiere dividir las pruebas unitarias en 4 etapas
 - 1. Arrange:(Inicializar) Inicializar los objectos que se van a utilizar en la prueba unitaria
@@ -123,54 +122,54 @@ El patrón sugiere dividir las pruebas unitarias en 4 etapas
 - 3. Assert: (Comprobar) Comprueba que el resultado de la prueba realizada sea el correcto
 - 4. Annihilate: (Aniquilar) Eliminar todo los cambios hechos por la prueba unitaria
 	
-	```java
-	@Test
-	public void archivos() {
-		// 1. Arrange. Ponemos los objetos que necesitaremos
-		String path = "test.txt";
-		String texto = "Texto de prueba";
-		FileWriter file = null;
-		PrintWriter printerWriter = null;
-		String txtRes = null;
-		File fileRead = null;
-		Scanner scanner;
-		
-		// 2. Act. Efectuamos la accion deseada
-		try {
-			file = new FileWriter(path);
-			printerWriter = new PrintWriter(file);
-			printerWriter.println(texto);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (file != null) {
-				try {
-					file.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+```java
+@Test
+public void archivos() {
+	// 1. Arrange. Ponemos los objetos que necesitaremos
+	String path = "test.txt";
+	String texto = "Texto de prueba";
+	FileWriter file = null;
+	PrintWriter printerWriter = null;
+	String txtRes = null;
+	File fileRead = null;
+	Scanner scanner;
+	
+	// 2. Act. Efectuamos la accion deseada
+	try {
+		file = new FileWriter(path);
+		printerWriter = new PrintWriter(file);
+		printerWriter.println(texto);
+	} catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} finally {
+		if (file != null) {
+			try {
+				file.close();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
-		
-		// 3. Assert. Comprobamos si el resultado es el esperado
-		fileRead = new File(path);
-		try {
-			scanner = new Scanner(fileRead);
-			scanner.useLocale(Locale.ENGLISH);
-			txtRes = scanner.nextLine();
-			System.out.println(txtRes);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		Assert.assertEquals(texto, txtRes);
-		
-		
-		
-		// 4. Annihilate. Deshacemos todo lo hecho por el test.
-		fileRead.delete();
 	}
-	```
+	
+	// 3. Assert. Comprobamos si el resultado es el esperado
+	fileRead = new File(path);
+	try {
+		scanner = new Scanner(fileRead);
+		scanner.useLocale(Locale.ENGLISH);
+		txtRes = scanner.nextLine();
+		System.out.println(txtRes);
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	}
+	Assert.assertEquals(texto, txtRes);
+	
+	
+	
+	// 4. Annihilate. Deshacemos todo lo hecho por el test.
+	fileRead.delete();
+}
+```
 
 Fuentes:
 [https://github.com/programacion-avanzada/workspace-taller/issues/url](url)
