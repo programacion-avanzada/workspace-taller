@@ -3,7 +3,7 @@ package edu.unlam.taller.threads;
 import java.util.LinkedList;
 
 public class ThreadProductorConsumidor {
-	public final static int MAX_CANTIDAD = 20;
+	public final static int MAX_CANTIDAD = 10;
 
 	public static void main(String[] args) throws InterruptedException {
 		final ProductorConsumidor pc = new ProductorConsumidor();
@@ -36,7 +36,7 @@ public class ThreadProductorConsumidor {
 		t1.start();
 		t2.start();
 
-		// Se espera por el finalizado de ambos threads
+		// Se espera por la finalización de ambos threads
 		t1.join();
 		t2.join();
 
@@ -46,24 +46,26 @@ public class ThreadProductorConsumidor {
 	public static class ProductorConsumidor {
 		LinkedList<Integer> almacen = new LinkedList<>();
 		private int capacidad = 5;
+		static int id = 1;
 
 		// Metodo invocado por el productor
 		public synchronized void producir() throws InterruptedException {
-			int id = 0;
 
-			while (id < MAX_CANTIDAD) {
+			while (id <= MAX_CANTIDAD) {
 				// El thread del productor espera mientras el almacen esta lleno
-				while (almacen.size() == capacidad) {
+				if (almacen.size() == capacidad) {
+					// Notifico al consumidor para que sepa que puede consumir (activa el wait)
+					notify();
 					wait();
 				}
 
 				System.out.println("🌳 -> 🍎 #" + id);
 				almacen.add(id++);
 
-				// Notifico al consumidor para que sepa que puede consumir (activa el wait)
-				notify();
-				// Thread.sleep(300);
+				Thread.sleep(100);
 			}
+			notify();
+			System.out.println("Terminé de producir");
 		}
 
 		// Metodo invocado por el consumidor
@@ -71,19 +73,20 @@ public class ThreadProductorConsumidor {
 			boolean continuar = true;
 			while (continuar) {
 				// El thread del productor espera mientras el almacen esta vacio
-				while (almacen.size() == 0) {
+				if (almacen.size() == 0) {
+					// Notifico al productor para que sepa que hay lugar para producir
+					notify();
 					wait();
 				}
 
 				int producto = almacen.removeFirst();
 				System.out.println("😋 <- 🍎 #" + producto);
 
-				continuar = producto < MAX_CANTIDAD - 1;
+				continuar = producto < MAX_CANTIDAD;
 
-				// Notifico al productor para que sepa que hay lugar para producir
-				notify();
-				// Thread.sleep(300);
+				Thread.sleep(100);
 			}
+			System.out.println("Terminé de consumir");
 		}
 	}
 }

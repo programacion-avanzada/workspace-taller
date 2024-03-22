@@ -4,33 +4,36 @@ public class MiThread extends Thread {
 	public MiThread(String name) {
 		super(name);
 	}
-
+	
 	@Override
 	public void run() {
 		for (int i = 1; i <= 10; i++) {
 			System.out.println(i + " " + getName());
-			/*
+			
 			try {
-				sleep(500);
+				sleep((int)(Math.random() * 500));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			*/
+			
 		}
 		System.out.println(getName() + " Listo!!!");
 	}
 
 	public static void main(String arg[]) {
-		MiThread mt = new MiThread("Lucas");
+		MiThread mt = new MiThread("Alfa");
 		mt.start();
 
-		new MiThread("Julius").start();
+		new MiThread("Beta").start();
 		
-		new Thread("Fede") {
+		Thread x = new Thread("Gamma") {
 			@Override
 			public void run() {
-				System.out.println(getName() + " Hasta aquí llegó...");
+				System.out.println(getName() + " hasta aquí llegó...");
 			}
-		}.start();
+		};
+		x.start();
+		
+		System.out.println("chau");
 	}
 }
